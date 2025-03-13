@@ -16,7 +16,7 @@ def index(request):
             address=address
         )
 
-        log_update(person)
+        log_update(person, 'CREATE')
 
     context = {}
     context['Personnes'] = Personne.objects.all()
