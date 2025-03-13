@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from Application.models import Personne
+from Application.utils import log_update
 
 def index(request):
     if request.method == 'POST':
@@ -8,12 +9,14 @@ def index(request):
         age = request.POST.get('age')
         address = request.POST.get('address')
 
-        Personne.objects.create(
+        person = Personne.objects.create(
             first_name=first_name,
             last_name=last_name,
             age=age,
             address=address
         )
+
+        log_update(person)
 
     context = {}
     context['Personnes'] = Personne.objects.all()
